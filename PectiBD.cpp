@@ -29,6 +29,9 @@ int main(){
 									{111, menu_add_name},
 									{112, menu_del_name},
 									{113, menu_print_names},
+									{114, menu_add_midname},
+									{115, menu_del_midname},
+									{116, menu_print_midnames},
 									{0,   menu_exit}
 	};
 
@@ -57,6 +60,9 @@ void print_menu(){
 	cout << "111. Добавить имя\n";
 	cout << "112. Удалить имя\n";
 	cout << "113. Вывести имена\n";
+	cout << "114. Добавить отчество\n";
+	cout << "115. Удалить отчество\n";
+	cout << "116. Вывести отчества\n";
 	cout << "0. Выход\n\n";
 	cout << "Введите номер пункта меню: ";
 }
@@ -91,6 +97,13 @@ void menu_create_bd(){
 	ret = sqlite3_exec(db, "CREATE TABLE IF NOT EXISTS Names(Name, Dat_name)", 0, 0, &err);
 	if(ret != SQLITE_OK){
 		cout << "Ошибка при создании таблицы Names: " << err << endl;
+		sqlite3_free(err);
+		return ;
+	}
+
+	ret = sqlite3_exec(db, "CREATE TABLE IF NOT EXISTS MiddleNames(Name, Dat_name)", 0, 0, &err);
+	if(ret != SQLITE_OK){
+		cout << "Ошибка при создании таблицы MiddleNames: " << err << endl;
 		sqlite3_free(err);
 		return ;
 	}
