@@ -371,7 +371,7 @@ void menu_print_courses(){
 bool is_similary_name(const char *s1, const char *s2){
 
 	//cout << s1 << "(" << strlen(s1) << ")" << " ~ " << s2 << "(" << strlen(s2) << ")" << " = " << DMdistance(s1, s2) << endl;
-	return (DMdistance(s1, s2) < 5);
+	return (DMdistance(s1, s2) < 4);
 }
 
 vector<string> list_names;
@@ -401,18 +401,26 @@ void menu_add_name(){
 		return ;
 	}
 
-	cout << "\nВозможно Вы имели ввиду одно из этих имён:\n";
+	bool f = false;
 	for(int i=0; i<(int)list_names.size(); ++i){
-		if(is_similary_name(name, list_names[i].c_str())) cout << list_names[i] << endl;
+		if(is_similary_name(name, list_names[i].c_str())){
+			if(!f){
+				cout << "\nВозможно Вы имели ввиду одно из этих имён:\n";
+				f = true;
+			}
+			cout << list_names[i] << endl;
+		}
 	}
-	cout << "Прервать добавление нового имени? (y/n): ";
-	char c;
-	cin >> c;
-	if(c == 'y') return ;
+	char dat_name[101];
+	if(f){
+		cout << "Прервать добавление нового имени? (y/n): ";
+		char c;
+		cin >> c;
+		if(c == 'y') return ;
+		cin.getline(dat_name, 100);
+	}
 
 	cout << "Введите имя в дательном падеже (например Ивану): ";
-	char dat_name[101];
-	cin.getline(dat_name, 100);
 	cin.getline(dat_name, 100);
 
 	char query[1001];
