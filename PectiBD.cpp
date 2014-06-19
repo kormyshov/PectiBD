@@ -19,6 +19,10 @@ int main(){
 
 	int a;
 	map<int, void (*)()> func = {
+									{11, menu_add_comstruct},
+									{12, menu_del_comstruct},
+									{13, menu_print_comstruct},
+									{14, menu_load_comstruct},
 									{101, menu_create_bd},
 									{102, menu_add_school},
 									{103, menu_del_school},
@@ -56,6 +60,10 @@ int main(){
 void print_menu(){
 
 	cout << "\n\n\nДобро пожаловать в PectiBD.\n\nГлавное меню:\n";
+	cout << "\n 11. Добавить комсостав\n";
+	cout << " 12. Удалить комсостав\n";
+	cout << " 13. Вывести комсостав\n";
+	cout << " 14. Загрузить комсостав из файла\n";
 	cout << "\n101. Создание базы данных\n";
 	cout << "102. Добавить школу\n";
 	cout << "103. Удалить школу\n";
@@ -128,6 +136,13 @@ void menu_create_bd(){
 	}
 
 	ret = sqlite3_exec(db, "CREATE TABLE IF NOT EXISTS MiddleNames(Name, Dat_name)", 0, 0, &err);
+	if(ret != SQLITE_OK){
+		cout << "Ошибка при создании таблицы MiddleNames: " << err << endl;
+		sqlite3_free(err);
+		return ;
+	}
+
+	ret = sqlite3_exec(db, "CREATE TABLE IF NOT EXISTS CommandStructure(Season, Number, Instructor)", 0, 0, &err);
 	if(ret != SQLITE_OK){
 		cout << "Ошибка при создании таблицы MiddleNames: " << err << endl;
 		sqlite3_free(err);

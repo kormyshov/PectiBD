@@ -76,4 +76,28 @@ void menu_print_seasons(){
 
 }
 
+vector<pair<string,string> > seasons;
+int add_season(void *not_used, int cnt, char **arg, char **nu){
+	string id(arg[0]);
+	string nm(arg[1]);
+	seasons.push_back(make_pair(id, nm));
+
+	return 0;
+}
+
+vector<pair<string,string> > get_seasons(){
+
+	char *err = 0;
+	int ret = 0;
+
+	seasons.clear();
+
+	ret = sqlite3_exec(db, "SELECT rowid, Name FROM Seasons ORDER BY Name DESC", add_season, 0, &err);
+	if(ret != SQLITE_OK){
+		cout << "Ошибка при считывании из таблицы Seasons: " << err << endl;
+		sqlite3_free(err);
+	}
+
+	return seasons;
+}
 

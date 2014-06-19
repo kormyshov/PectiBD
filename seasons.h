@@ -9,6 +9,9 @@ void menu_print_seasons();
 
 int print_seasons(void *, int , char **, char **);
 
+int add_season(void *, int , char **, char **);
+std::vector<std::pair<std::string,std::string> > get_seasons();
+
 #endif
 
 

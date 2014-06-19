@@ -73,3 +73,27 @@ void menu_print_instructors(){
 
 }
 
+vector<pair<string,string> > instructors;
+int add_instructor(void *not_used, int cnt, char **arg, char **nu){
+	string id(arg[0]);
+	string nm(arg[1]);
+	instructors.push_back(make_pair(id, nm));
+
+	return 0;
+}
+
+vector<pair<string,string> > get_instructors(){
+
+	char *err = 0;
+	int ret = 0;
+
+	instructors.clear();
+
+	ret = sqlite3_exec(db, "SELECT rowid, Name FROM Instructors ORDER BY Name", add_instructor, 0, &err);
+	if(ret != SQLITE_OK){
+		cout << "Ошибка при считывании из таблицы Seasons: " << err << endl;
+		sqlite3_free(err);
+	}
+
+	return instructors;
+}

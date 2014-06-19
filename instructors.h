@@ -9,5 +9,7 @@ void menu_print_instructors();
 
 int print_instructors(void *, int , char **, char **);
 
+std::vector<std::pair<std::string,std::string> > get_instructors();
+
 #endif
 

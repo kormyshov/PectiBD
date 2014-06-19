@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <cstdio>
 #include <cstdlib>
 #include <sqlite3.h>
@@ -14,3 +15,4 @@
 #include "seasons.h"
 #include "names.h"
 #include "midnames.h"
+#include "comstruct.h"
