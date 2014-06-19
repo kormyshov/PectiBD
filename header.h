@@ -11,5 +11,6 @@
 #include "schools.h"
 #include "courses.h"
 #include "instructors.h"
+#include "seasons.h"
 #include "names.h"
 #include "midnames.h"
