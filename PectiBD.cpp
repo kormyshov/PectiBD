@@ -26,6 +26,9 @@ int main(){
 									{105, menu_add_course},
 									{106, menu_del_course},
 									{107, menu_print_courses},
+									{108, menu_add_instructor},
+									{109, menu_del_instructor},
+									{110, menu_print_instructors},
 									{111, menu_add_name},
 									{112, menu_del_name},
 									{113, menu_print_names},
@@ -57,6 +60,9 @@ void print_menu(){
 	cout << "105. Добавить направление\n";
 	cout << "106. Удалить направление\n";
 	cout << "107. Вывести направления\n";
+	cout << "108. Добавить инструктора\n";
+	cout << "109. Удалить инструктора\n";
+	cout << "110. Вывести инструкторов\n";
 	cout << "111. Добавить имя\n";
 	cout << "112. Удалить имя\n";
 	cout << "113. Вывести имена\n";
@@ -90,6 +96,13 @@ void menu_create_bd(){
 	ret = sqlite3_exec(db, "CREATE TABLE IF NOT EXISTS Courses(Name, Dat_name)", 0, 0, &err);
 	if(ret != SQLITE_OK){
 		cout << "Ошибка при создании таблицы Courses: " << err << endl;
+		sqlite3_free(err);
+		return ;
+	}
+
+	ret = sqlite3_exec(db, "CREATE TABLE IF NOT EXISTS Instructors(Name)", 0, 0, &err);
+	if(ret != SQLITE_OK){
+		cout << "Ошибка при создании таблицы Instructors: " << err << endl;
 		sqlite3_free(err);
 		return ;
 	}

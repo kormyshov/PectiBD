@@ -10,5 +10,6 @@
 #include "common.h"
 #include "schools.h"
 #include "courses.h"
+#include "instructors.h"
 #include "names.h"
 #include "midnames.h"
