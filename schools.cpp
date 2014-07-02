@@ -14,7 +14,7 @@ int add_school_name(void *not_used, int cnt, char **arg, char **sz){
 
 void menu_add_school(){
 
-	cout << "Введите название школы (например Гимназия №11 г. Красноярска или Шуваевская СОШ): ";
+	cout << "Введите название школы (например Гимназия № 11 г. Красноярска или Шуваевская СОШ): ";
 	char name[101];
 	cin.getline(name, 100);
 	cin.getline(name, 100);

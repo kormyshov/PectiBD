@@ -16,3 +16,4 @@
 #include "names.h"
 #include "midnames.h"
 #include "comstruct.h"
+#include "pupils.h"

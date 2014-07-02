@@ -144,3 +144,28 @@ void menu_print_names(){
 	}
 
 }
+
+vector<pair<string,string> > names;
+int add_name(void *not_used, int cnt, char **arg, char **nu){
+	string id(arg[0]);
+	string nm(arg[1]);
+	names.push_back(make_pair(id, nm));
+
+	return 0;
+}
+
+vector<pair<string,string> > get_names(){
+
+	char *err = 0;
+	int ret = 0;
+
+	names.clear();
+
+	ret = sqlite3_exec(db, "SELECT rowid, Name FROM Names", add_name, 0, &err);
+	if(ret != SQLITE_OK){
+		cout << "Ошибка при считывании из таблицы Names: " << err << endl;
+		sqlite3_free(err);
+	}
+
+	return names;
+}
